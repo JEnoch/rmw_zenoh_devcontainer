@@ -1,0 +1,39 @@
+{
+    "name": "ROS 2 Development Container",
+    "privileged": true,
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "mounts": [
+        "source=${localWorkspaceFolder}/.bashrc,target=/root/.bashrc,type=bind",
+        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
+        //"source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
+     ],
+    "forwardPorts": [7445, 7446, 7447, 7448, 7449],
+    "customizations": {
+        "vscode": {
+            "extensions":[
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-themes",
+                "twxs.cmake",
+                "donjayamanne.python-extension-pack",
+                "eamodio.gitlens",
+                "ms-iot.vscode-ros"
+            ]
+        }
+    },
+    "containerEnv": {
+        "CONTAINER_WORKSPACE": "${containerWorkspaceFolder}",
+        "DISPLAY": "host.docker.internal:0",                     // for Linux host: "unix:0",
+        "ROS_AUTOMATIC_DISCOVERY_RANGE": "LOCALHOST",
+        "ROS_DOMAIN_ID": "0"
+    },
+    "runArgs": [
+        "--cpus", "8",
+        "--memory", "12g",
+        "--net=host",
+        "--pid=host",
+        "--ipc=host",
+    ],
+    "postCreateCommand": ". /opt/ros/$ROS_DISTRO/setup.sh && cd ${containerWorkspaceFolder}/ros_ws/ && rosdep update && rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO -y"
+}

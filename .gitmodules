@@ -1,0 +1,12 @@
+[submodule "ros_ws/src/rmw_zenoh"]
+	path = ros_ws/src/rmw_zenoh
+	url = https://github.com/ros2/rmw_zenoh
+[submodule "eclipse-zenoh/zenoh"]
+	path = eclipse-zenoh/zenoh
+	url = https://github.com/eclipse-zenoh/zenoh
+[submodule "eclipse-zenoh/zenoh-c"]
+	path = eclipse-zenoh/zenoh-c
+	url = https://github.com/eclipse-zenoh/zenoh-c
+[submodule "eclipse-zenoh/zenoh-cpp"]
+	path = eclipse-zenoh/zenoh-cpp
+	url = https://github.com/eclipse-zenoh/zenoh-cpp
