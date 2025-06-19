@@ -9,7 +9,6 @@
         "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
         //"source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
      ],
-    "forwardPorts": [7445, 7446, 7447, 7448, 7449],
     "customizations": {
         "vscode": {
             "extensions":[

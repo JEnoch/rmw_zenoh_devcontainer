@@ -1,7 +1,10 @@
 FROM osrf/ros:jazzy-desktop-full
 
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y python3-pip cargo clang curl less vim jq iputils-ping iproute2
+RUN apt-get install -y \
+    python3-pip cargo clang \
+    curl less vim jq iputils-ping iproute2 \
+    ros-jazzy-turtlebot3-gazebo
 ENV SHELL=/bin/bash
 
 # ********************************************************
