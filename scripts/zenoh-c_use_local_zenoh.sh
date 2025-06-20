@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Patching $CONTAINER_WORKSPACE/eclipse-zenoh/zenoh-c to use $CONTAINER_WORKSPACE/eclipse-zenoh/zenoh"
+
 function replace_zenoh_deps()
 {
     FILE=$1
@@ -7,11 +9,11 @@ function replace_zenoh_deps()
     perl -i -pe 's|(zenoh.*?)\bversion = ".*?", |$1|' $FILE
     perl -i -pe 's|(zenoh.*?)[, ]*\bbranch = ".*?"|$1|' $FILE
 
-    perl -i -pe 's|(zenoh .*?)\bgit = ".*?"|$1path = "/ros_ws/src/zenoh/zenoh"|' $FILE
-    perl -i -pe 's|(zenoh-ext .*?)\bgit = ".*?"|$1path = "/ros_ws/src/zenoh/zenoh-ext"|' $FILE
-    perl -i -pe 's|(zenoh-runtime .*?)\bgit = ".*?"|$1path = "/ros_ws/src/zenoh/commons/zenoh-runtime"|' $FILE
-    perl -i -pe 's|(zenoh-util .*?)\bgit = ".*?"|$1path = "/ros_ws/src/zenoh/commons/zenoh-util"|' $FILE
-    perl -i -pe 's|(zenoh-protocol .*?)\bgit = ".*?"|$1path = "/ros_ws/src/zenoh/commons/zenoh-protocol"|' $FILE
+    perl -i -pe 's|(zenoh .*?)\bgit = ".*?"|$1path = "'"$CONTAINER_WORKSPACE"'/eclipse-zenoh/zenoh/zenoh"|' $FILE
+    perl -i -pe 's|(zenoh-ext .*?)\bgit = ".*?"|$1path = "'"$CONTAINER_WORKSPACE"'/eclipse-zenoh/zenoh/zenoh-ext"|' $FILE
+    perl -i -pe 's|(zenoh-runtime .*?)\bgit = ".*?"|$1path = "'"$CONTAINER_WORKSPACE"'/eclipse-zenoh/zenoh/commons/zenoh-runtime"|' $FILE
+    perl -i -pe 's|(zenoh-util .*?)\bgit = ".*?"|$1path = "'"$CONTAINER_WORKSPACE"'/eclipse-zenoh/zenoh/commons/zenoh-util"|' $FILE
+    perl -i -pe 's|(zenoh-protocol .*?)\bgit = ".*?"|$1path = "'"$CONTAINER_WORKSPACE"'/eclipse-zenoh/zenoh/commons/zenoh-protocol"|' $FILE
 }
 
 
