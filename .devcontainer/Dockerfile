@@ -1,10 +1,12 @@
-FROM ghcr.io/sloretz/ros:jazzy-desktop-full
+ARG ROS_DISTRO=rolling
+
+FROM ghcr.io/sloretz/ros:${ROS_DISTRO}-desktop-full
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y \
     python3-pip cargo clang \
-    curl less vim jq iputils-ping iproute2 \
-    ros-jazzy-turtlebot3-gazebo
+    curl less vim jq iputils-ping iproute2 psmisc \
+    ros-${ROS_DISTRO}-turtlebot3-gazebo
 ENV SHELL=/bin/bash
 
 # ********************************************************
