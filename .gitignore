@@ -7,4 +7,6 @@ ros_ws/log
 ros_ws/src/*
 !ros_ws/src/rmw_zenoh
 
+PR_bump_zenoh_*.md
+
 confs
