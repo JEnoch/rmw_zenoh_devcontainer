@@ -2,16 +2,19 @@
 ZENOH_VENDOR_CMAKEFILE=$WS/src/rmw_zenoh/zenoh_cpp_vendor/CMakeLists.txt
 
 
+# Get current zenoh-cpp commit from zenoh_cpp_vendor/CMakeLists.txt
 function get_zenoh_cpp_commit()
 {
     grep -A 3 "ament_vendor(zenoh_cpp_vendor" $ZENOH_VENDOR_CMAKEFILE | grep "VCS_VERSION" | awk '{print $2}'
 }
 
+# Get current zenoh-c commit from zenoh_cpp_vendor/CMakeLists.txt
 function get_zenoh_c_commit()
 {
     grep -A 3 "ament_vendor(zenoh_c_vendor" $ZENOH_VENDOR_CMAKEFILE | grep "VCS_VERSION" | awk '{print $2}'
 }
 
+# Get current zenoh commit from zenoh-c Cargo.lock file
 function get_zenoh_commit()
 {
     ZENOH_C_COMMIT=$(get_zenoh_c_commit)
@@ -22,6 +25,23 @@ function get_zenoh_commit()
     echo $ZENOH_COMMIT
 }
 
+# print the commit id from a given project and tag or branch
+function get_commit_id()
+{
+    if [ $# -ne 2 ]; then
+        echo "Usage: $0 <project_name> <tag_or_branch>"
+        return -1
+    fi
+
+    PROJECT=$1
+    TAG=$2
+    URL="https://api.github.com/repos/${PROJECT}/commits/${TAG}"
+    COMMIT_DATA=$(curl -s $URL)
+    COMMIT_ID=$(echo $COMMIT_DATA | jq -r '.sha')
+    echo $COMMIT_ID
+}
+
+# print the commit info from a given project and commit id
 function print_commit_info()
 {
     if [ $# -ne 2 ]; then
@@ -42,6 +62,7 @@ function print_commit_info()
     echo "  - PR: https://github.com/${PROJECT}/pull/${PR_NUMBER}"
 }
 
+# Print infos about current zenoh projects commits
 function zenoh_commits()
 {
     ZENOH_CPP=$(get_zenoh_cpp_commit)
@@ -55,6 +76,7 @@ function zenoh_commits()
     print_commit_info eclipse-zenoh/zenoh ${ZENOH}
 }
 
+# Checkout zenoh-cpp, zenoh-c and zenoh to the commits used by rmw_zenoh
 function sync_zenoh_commits()
 {
     ZENOH_CPP=$(get_zenoh_cpp_commit)
