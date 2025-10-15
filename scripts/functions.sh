@@ -83,12 +83,14 @@ function sync_zenoh_commits()
     echo ""
     echo "zenoh-cpp: checkout $ZENOH_CPP"
     cd $CONTAINER_WORKSPACE/eclipse-zenoh/zenoh-cpp
+    git fetch -q
     git checkout $ZENOH_CPP
     cd - > /dev/null
 
     ZENOH_C=$(get_zenoh_c_commit)
     echo ""
     echo "zenoh-c: checkout $ZENOH_C"
+    git fetch -q
     cd $CONTAINER_WORKSPACE/eclipse-zenoh/zenoh-c
     git checkout $ZENOH_C
     cd - > /dev/null
@@ -97,6 +99,7 @@ function sync_zenoh_commits()
     echo ""
     echo "zenoh: checkout $ZENOH"
     cd $CONTAINER_WORKSPACE/eclipse-zenoh/zenoh
+    git fetch -q
     git checkout $ZENOH
     cd - > /dev/null
 }
