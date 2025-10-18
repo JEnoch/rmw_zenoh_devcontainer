@@ -90,8 +90,8 @@ function sync_zenoh_commits()
     ZENOH_C=$(get_zenoh_c_commit)
     echo ""
     echo "zenoh-c: checkout $ZENOH_C"
-    git fetch -q
     cd $CONTAINER_WORKSPACE/eclipse-zenoh/zenoh-c
+    git fetch -q
     git checkout $ZENOH_C
     cd - > /dev/null
 
