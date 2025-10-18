@@ -65,7 +65,7 @@ if [ ${OLD_ZENOH_C_COMMIT} != ${NEW_ZENOH_C_COMMIT} ]; then
     echo "- zenoh-c: [${OLD_ZENOH_C_COMMIT:0:7}](https://github.com/eclipse-zenoh/zenoh-c/commit/${OLD_ZENOH_C_COMMIT}) -> [${NEW_ZENOH_C_COMMIT:0:7}](https://github.com/eclipse-zenoh/zenoh-c/commit/${NEW_ZENOH_C_COMMIT}) - [diff](https://github.com/eclipse-zenoh/zenoh-c/compare/${OLD_ZENOH_C_COMMIT}...${NEW_ZENOH_C_COMMIT})" >> ${PR_MESSAGE_FILE}
 fi
 if [ ${OLD_ZENOH_COMMIT} != ${NEW_ZENOH_COMMIT} ]; then
-    echo "- zenoh: [${OLD_ZENOH_COMMIT:0:7}](https://github.com/eclipse-zenoh/zenoh/commit/${OLD_ZENOH_COMMIT}) -> [${NEW_ZENOH_COMMIT:0:7}](https://github.com/eclipse-zenoh/zenoh/commit/${NEW_ZENOH_COMMIT}) - [diff](https://github.com/eclipse-zenoh/zenoh/compare/${OLD_ZENOH_COMMIT}...${OLD_ZENOH_COMMIT})" >> ${PR_MESSAGE_FILE}
+    echo "- zenoh: [${OLD_ZENOH_COMMIT:0:7}](https://github.com/eclipse-zenoh/zenoh/commit/${OLD_ZENOH_COMMIT}) -> [${NEW_ZENOH_COMMIT:0:7}](https://github.com/eclipse-zenoh/zenoh/commit/${NEW_ZENOH_COMMIT}) - [diff](https://github.com/eclipse-zenoh/zenoh/compare/${OLD_ZENOH_COMMIT}...${NEW_ZENOH_COMMIT})" >> ${PR_MESSAGE_FILE}
 fi
 
 cat > ${PR_MESSAGE_FILE} << EOF
