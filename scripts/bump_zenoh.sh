@@ -68,7 +68,7 @@ if [ ${OLD_ZENOH_COMMIT} != ${NEW_ZENOH_COMMIT} ]; then
     echo "- zenoh: [${OLD_ZENOH_COMMIT:0:7}](https://github.com/eclipse-zenoh/zenoh/commit/${OLD_ZENOH_COMMIT}) -> [${NEW_ZENOH_COMMIT:0:7}](https://github.com/eclipse-zenoh/zenoh/commit/${NEW_ZENOH_COMMIT}) - [diff](https://github.com/eclipse-zenoh/zenoh/compare/${OLD_ZENOH_COMMIT}...${NEW_ZENOH_COMMIT})" >> ${PR_MESSAGE_FILE}
 fi
 
-cat > ${PR_MESSAGE_FILE} << EOF
+cat >> ${PR_MESSAGE_FILE} << EOF
 
 It includes those notable changes:
 
